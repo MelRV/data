@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 const fs = require('fs');
 let current_index = 0;
 
-async function search_for(page, query = "software", siguiente_clicks = 0) {
+async function search_for(page, query = "CRM", siguiente_clicks = 0) {
   // Navegar a la página de búsqueda
   await page.goto('https://www.bniconnectglobal.com/web/secure/networkAddConnections');
 
@@ -88,7 +88,7 @@ let collectedData = new Set();  // Use a Set to store unique profiles
     // Esperar a que la página principal cargue completamente después del inicio de sesión
     await page.waitForNavigation({ waitUntil: 'domcontentloaded' });
 
-    await search_for(page, "software");
+    await search_for(page, "CRM");
 
     // Loop para paginación
     while (true) {
@@ -153,7 +153,7 @@ let collectedData = new Set();  // Use a Set to store unique profiles
         collectedData.add(JSON.stringify(currentLinkData));
       }
 
-      await search_for(page, "software", current_index++)
+      await search_for(page, "CRM", current_index++)
       const htmlContent = await page.content();
       console.log(htmlContent);
 
